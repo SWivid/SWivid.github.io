@@ -34,12 +34,122 @@
 		<a href="https://huggingface.co/spaces/chenxie95/Habibi-TTS" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/-Online%20Experience-yellow?labelColor=grey&logo=huggingface&style=for-the-badge"></a>
 		<a href="https://huggingface.co/datasets/SWivid/Habibi" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/-Benchmark-lightgrey?labelColor=grey&logo=huggingface&style=for-the-badge"></a>
 		<a href="https://huggingface.co/SWivid/Habibi-TTS" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/-Model%20Suite-lightgrey?labelColor=grey&logo=huggingface&style=for-the-badge"></a>
-
 	</div>
-	<p><b>Basic code, GUI inference is ready; pretrained models and benchmark are released.</b></p>
-	<p><b>CLI inference, eval scripts, and samples for direct view on page will be ready in hours.</b></p>
+	<p><b>Abstract</b>&nbsp; A notable gap persists in speech synthesis research and development for Arabic dialects, particularly from a unified modeling perspective. Despite its high practical value, the inherent linguistic complexity of Arabic dialects, further compounded by a lack of standardized data, benchmarks, and evaluation guidelines, steers researchers toward safer ground. To bridge this divide, we present Habibi, a suite of specialized and unified text-to-speech models that harnesses existing open-source ASR corpora to support a wide range of high- to low-resource Arabic dialects through linguistically-informed curriculum learning. Our approach outperforms the leading commercial service in generation quality, while maintaining extensibility through effective in-context learning, without requiring text diacritization. We are committed to open-sourcing the model, along with creating the first systematic benchmark for multi-dialect Arabic speech synthesis. Furthermore, by identifying the key challenges in and establishing evaluation standards for the process, we aim to provide a solid groundwork for subsequent research.
+	</p>
+	<p style="text-align: center;">
+		<img src="pics/main.png" width="600">
+	</p>
+	<p style="text-align: center;">
+		<b>Figure 1</b>&nbsp; Our open-source unified-dialectal model (Habibi) outperforms ElevenLabs' commercial TTS service: the latest Eleven v3 (alpha) (11Labs-3a). <br>WER-O and WER-S are the word error rates evaluated using Meta Omnilingual-ASR-LLM-7B and dialect-specific ASR models, respectively.
+	</p>
+	<p><b>This page is for research demonstration purposes only.</b></p>
 </div>
 
+
+<div class="container pt-5 mt-5 shadow-lg p-5 mb-5 bg-white rounded">
+	<h4 id="zero-shot" style="text-align: center;">Zero-Shot Speech Synthesis Performance</h4>
+	<div class="table-responsive pt-3">
+		<table class="table table-hover pt-2">
+			<thead>
+			<tr>
+			<th style="vertical-align : middle;text-align: center">ID</th>
+			<th style="vertical-align : middle;text-align: center">Prompt</th>
+			<th style="vertical-align : middle;text-align: center">11Labs-3a</th>
+			<th style="vertical-align : middle;text-align: center">Habibi (Ours)</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">MSA</td>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2"><audio controls="controls" style="width: 288px;"><source src="audios/MSA.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">انتهاكات نجد لها مثيلا في بلد آخر لا صوت يعلو فيه هذه الأيام فوق صوت الرصاص ودوي القذائف والغارات</td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/MSA_11Labs-3a.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/MSA_Habibi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="6">SAU</td>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">Najdi<br><br><audio controls="controls" style="width: 288px;"><source src="audios/SAU-Najdi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">اعزمك انت والاهل كلهم والاسرة الكريمة تجون على ملكة ولدي فهد على بنت اخوي عبد الله ان شاء الله الجمعة الجاية والله يحييكم تشرفونا</td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/SAU-Najdi_11Labs-3a.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/SAU-Najdi_Habibi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">Hijazi<br><br><audio controls="controls" style="width: 288px;"><source src="audios/SAU-Hijazi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">سلمى يا حلوة انتي اكتشفتي الحلا بس شميته ما اكلتيه ليه ما اكلتي من الحلويات سلمى</td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/SAU-Hijazi_11Labs-3a.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/SAU-Hijazi_Habibi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">Gulf<br><br><audio controls="controls" style="width: 288px;"><source src="audios/SAU-Gulf.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">اداوم من الصبح وارجع الساعة ثنتين وما بعد الساعة ثنتين هذا وقت ملكي انا بروحي</td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/SAU-Gulf_11Labs-3a.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/SAU-Gulf_Habibi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">UAE</td>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2"><audio controls="controls" style="width: 288px;"><source src="audios/UAE.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">لا تظنون أن العقل شيء سيء بل على العكس تماما هو أهم ما يملك الإنسان لكن اللي نريد أن نقوله في هذه الحلقة</td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/UAE_11Labs-3a.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/UAE_Habibi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">ALG</td>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2"><audio controls="controls" style="width: 288px;"><source src="audios/ALG.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">لكن المشكل تاعو أننا نلقاو هاد لمعالج في هواتف أرخص شوية، هذا فقط العيب اللي فيه لكن هاتف محترم ويستحق الشراء.</td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/ALG_11Labs-3a.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/ALG_Habibi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">IRQ</td>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2"><audio controls="controls" style="width: 288px;"><source src="audios/IRQ.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">ما معلوم ااا أشقد الوقت بالضبظ لأنه هناك لجان تفتيش راح تجي وراح تبدأ التحقيقات أيضا، فأعتقد يحتاج شوية وقت.</td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/IRQ_11Labs-3a.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/IRQ_Habibi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">EGY</td>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2"><audio controls="controls" style="width: 288px;"><source src="audios/EGY.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">مش عشان يلاقوا يقين يخصها بل عشان زي ما تقولوا كده همّ بيحبوا عدم اليقين، بيرتاحوا في قلة الراحة</td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/EGY_11Labs-3a.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/EGY_Habibi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">MAR</td>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2"><audio controls="controls" style="width: 288px;"><source src="audios/MAR.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">أو جوج ملاعق ديال سكر سنيدة غادي نضيفهم على الخليط كيفما كتشوفو معايا</td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/MAR_11Labs-3a.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;"><audio controls="controls" style="width: 388px;"><source src="audios/MAR_Habibi.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p><b>This page is for research demonstration purposes only.</b></p>
+</div>
 
 
 </article>
