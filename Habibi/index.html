@@ -35,14 +35,24 @@
 		<a href="https://huggingface.co/datasets/SWivid/Habibi" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/-Benchmark-lightgrey?labelColor=grey&logo=huggingface&style=for-the-badge"></a>
 		<a href="https://huggingface.co/SWivid/Habibi-TTS" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/-Model%20Suite-lightgrey?labelColor=grey&logo=huggingface&style=for-the-badge"></a>
 	</div>
-	<p><b>Abstract</b>&nbsp; A notable gap persists in speech synthesis research and development for Arabic dialects, particularly from a unified modeling perspective. Despite its high practical value, the inherent linguistic complexity of Arabic dialects, further compounded by a lack of standardized data, benchmarks, and evaluation guidelines, steers researchers toward safer ground. To bridge this divide, we present Habibi, a suite of specialized and unified text-to-speech models that harnesses existing open-source ASR corpora to support a wide range of high- to low-resource Arabic dialects through linguistically-informed curriculum learning. Our approach outperforms the leading commercial service in generation quality, while maintaining extensibility through effective in-context learning, without requiring text diacritization. We are committed to open-sourcing the model, along with creating the first systematic benchmark for multi-dialect Arabic speech synthesis. Furthermore, by identifying the key challenges in and establishing evaluation standards for the process, we aim to provide a solid groundwork for subsequent research.
+	<p><b>Abstract</b>&nbsp; Arabic spans over 30 spoken varieties, yet no open-source text-to-speech system unifies them. Key barriers include substantial cross-dialect lexical and phonological divergence, scarce synthesis-grade data, and the absence of a standardized multi-dialect evaluation benchmark. We present Habibi, a unified-dialectal Arabic TTS framework that addresses all three. Through a multi-step curation pipeline, we repurpose open-source ASR corpora into TTS training data covering 12+ regional dialects. A linguistically-informed curriculum learning strategy—progressing from Modern Standard Arabic to dialectal data—enables robust zero-shot synthesis without text diacritization. We further release the first standardized multi-dialect Arabic TTS benchmark, comprising over 11,000 utterances across 7 dialect subsets with manually verified transcripts. On this benchmark, our unified model matches or surpasses per-dialect specialized models. Both automatic metrics and human evaluations confirm that Habibi is highly competitive with ElevenLabs' Eleven v3 (alpha) in intelligibility, speaker similarity, and naturalness. Extensive ablations (~8,000 H100 GPU hours, 30+ configurations) validate each design choice. We open-source all checkpoints, training and inference code, and benchmark data—the first such release for multi-dialect Arabic TTS.
 	</p>
 	<p style="text-align: center;">
-		<img src="pics/main.png" width="600">
+		<img src="pics/main.png" width="1100">
 	</p>
 	<p style="text-align: center;">
-		<b>Figure 1</b>&nbsp; Our open-source unified-dialectal model (Habibi) outperforms ElevenLabs' commercial TTS service: the latest Eleven v3 (alpha) (11Labs-3a). <br>WER-O and WER-S are the word error rates evaluated using Meta Omnilingual-ASR-LLM-7B and dialect-specific ASR models, respectively.
+		<b>Figure 1</b>&nbsp; Our open-source unified-dialectal model (Habibi-Unified) vs. ElevenLabs' commercial Eleven v3 (alpha).<br>
+		WER-S/O: word error rates from two different ASR systems. D/S/N-MOS: dialect pronunciation accuracy, speaker similarity, and naturalness.
 	</p>
+
+	<p>
+	<b>Contents</b>
+      <ul>
+        <li><a href="#zero-shot">Zero-Shot Speech Synthesis Performance</a></li>
+        <li><a href="#code-switch">Code-Switching Performance</a></li>
+      </ul>
+	</p><br>
+
 	<p><b>This page is for research demonstration purposes only.</b></p>
 </div>
 
@@ -148,7 +158,43 @@
 			</tbody>
 		</table>
 	</div>
-	<p><b>This page is for research demonstration purposes only.</b></p>
+
+</div>
+
+
+<div class="container pt-5 mt-5 shadow-lg p-5 mb-5 bg-white rounded">
+	<h4 id="code-switch" style="text-align: center;">Code-Switching Performance</h4>
+	<div class="table-responsive pt-3">
+		<table class="table table-hover pt-2">
+			<thead>
+			<tr>
+			<th style="vertical-align : middle;text-align: center">Language</th>
+			<th style="vertical-align : middle;text-align: center">Prompt</th>
+			<th style="vertical-align : middle;text-align: center">Habibi (Ours)</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">UAE + English</td>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2"><audio controls="controls" style="width: 288px;"><source src="audios/UAE.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">أهلًا حياكم الله في حلقة يديدة من podcast think with Hessa أتمنى تكونون بخير ومستعدين حق حلقة اليوم.<audio controls="controls" style="width: 666px;"><source src="audios/UAE_Habibi_CS_1.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;">ولو ساعدتني ولا لا. basically بخبركم عن حياتي المالية، my financial situation.<audio controls="controls" style="width: 666px;"><source src="audios/UAE_Habibi_CS_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+
+				<tr>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2">ALG + French</td>
+					<td style="vertical-align : middle;text-align:center;" rowspan="2"><audio controls="controls" style="width: 288px;"><source src="audios/ALG.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+					<td style="vertical-align : middle;text-align:center;" colspan="2">La dernière fois كي جيتي عندنا للشروق البيرو.<audio controls="controls" style="width: 666px;"><source src="audios/ALG_Habibi_CS_2.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+				<tr>
+					<td style="vertical-align : middle;text-align:center;">"ولا تلقاها مثبتة في أول تعليق في les commentaire تلظ عليه، تتفرج الفيديو كامل في القناة الثانية."<audio controls="controls" style="width: 666px;"><source src="audios/ALG_Habibi_CS_1.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
 </div>
 
 
